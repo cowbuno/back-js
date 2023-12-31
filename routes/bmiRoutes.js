@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-// Additional required npm packages
-
 router.get('/', (req, res) => {
-    // Render the BMI calculator form
+    res.sendFile(__dirname + '/../views/index.html');
 });
 
 router.post('/', (req, res) => {
-    // Handle BMI calculation and display result
-    // Include history feature here
+    const weight = parseFloat(req.body.weight);
+    const height = parseFloat(req.body.height);
+    const bmi = weight / (height * height);
+    
+
+    res.send(`Your BMI is ${bmi}`);
 });
 
 module.exports = router;
